@@ -1,9 +1,25 @@
 import Cocoa
 
-class Employee {
-    var name = "";
+class Person {
+    var name = ""
+    
+    init(){
+    }
+    init(_ name:String){
+        self.name = name
+    }
+}
+
+class Employee: Person {
     var salary = 0;
     var role = "";
+    
+    override init(_ name:String){
+        //this is calling the init(_ name:String) function of this person class
+        super.init(name)
+        // Additional init code
+        self.role = "Analyst"
+    }
     
     func doWork(){
         print("Hi my name is \(name) and i'm doing Workk");
@@ -11,22 +27,29 @@ class Employee {
     }
 }
 
-let a:Int = 10;
-let b:String = "Ted"
-var c:Employee = Employee();
+class Manager: Employee {
+    
+    var teamSize = 0;
+    
+    override func doWork(){
+        super.doWork()
+        
+        print("I'm managing people")
+        salary += 2
+    }
+    func firePeople(){
+        print("I'm firing people")
+    }
+}
 
-c.name = "Tom";
-c.role = "Art Director";
-c.salary = 1000;
+let myPerson = Person("Tom");
 
-print(c.salary)
-c.doWork()
+print(myPerson.name)
 
-var d = Employee();
-d.name = "Ame";
-d.role = "Developer Fullstack";
-d.doWork();
+let myEmployee = Employee("Joe");
 
+print(myEmployee.role)
+print(myEmployee.name)
 
 
 
